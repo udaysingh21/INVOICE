@@ -15,18 +15,16 @@ class InvoiceAPITest(APITestCase):
         )
 
     def test_get_invoices(self):
-        url = reverse('invoice-list-create')  # Replace with your actual endpoint name
+        url = reverse('invoice-list-create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-        # Add more assertions to check the response content
 
     def test_get_single_invoice(self):
         url = reverse('invoice-detail', kwargs={'pk': self.invoice.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-        # Add more assertions to check the response content
 
     def test_create_invoice(self):
         url = reverse('invoice-list-create')
@@ -35,9 +33,8 @@ class InvoiceAPITest(APITestCase):
             'customer_name': 'New Test Customer'
         }
         response = self.client.post(url, data)
-        self.assertEqual(response.status_code, 201)  # Assuming successful creation returns 201
+        self.assertEqual(response.status_code, 201)
 
-        # Add assertions to check if the invoice was created correctly
 
     def test_update_invoice(self):
         url = reverse('invoice-detail', kwargs={'pk': self.invoice.pk})
@@ -48,14 +45,12 @@ class InvoiceAPITest(APITestCase):
         response = self.client.put(url, data)
         self.assertEqual(response.status_code, 200)
 
-        # Add assertions to check if the invoice was updated correctly
 
     def test_delete_invoice(self):
         url = reverse('invoice-detail', kwargs={'pk': self.invoice.pk})
         response = self.client.delete(url)
-        self.assertEqual(response.status_code, 204)  # Assuming successful deletion returns 204
+        self.assertEqual(response.status_code, 204)
 
-        # Add assertions to check if the invoice was deleted correctly
 
     def test_create_invoice_with_details(self):
         url = reverse('invoice-list-create')
@@ -75,13 +70,11 @@ class InvoiceAPITest(APITestCase):
                     'unit_price': 20.0,
                     'price': 20.0
                 }
-                # Add more invoice details if needed
             ]
         }
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, 201)  # Assuming successful creation returns 201
+        self.assertEqual(response.status_code, 201)
 
-        # Add assertions to check if the invoice and associated invoice details were created correctly
 
     def test_update_invoice_with_details(self):
         url = reverse('invoice-detail', kwargs={'pk': self.invoice.pk})
@@ -90,16 +83,15 @@ class InvoiceAPITest(APITestCase):
             'customer_name': 'Updated Customer Name',
             'invoice_details': [
                 {
-                    'id': self.invoice_detail.id,  # Existing invoice detail ID
+                    'id': self.invoice_detail.id,
                     'description': 'Updated Description',
                     'quantity': 5,
                     'unit_price': 18.0,
                     'price': 90.0
                 }
-                # Add more updated invoice details if needed
+
             ]
         }
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, 200)
 
-        # Add assertions to check if the invoice and associated invoice details were updated correctly
