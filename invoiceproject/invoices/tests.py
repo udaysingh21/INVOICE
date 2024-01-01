@@ -39,7 +39,7 @@ class InvoiceAPITest(APITestCase):
     def test_update_invoice(self):
         url = reverse('invoice-detail', kwargs={'pk': self.invoice.pk})
         data = {
-            'date': '2023-01-02',  # Updated date
+            'date': '2023-01-02',
             'customer_name': 'Updated Customer Name'
         }
         response = self.client.put(url, data)
@@ -79,7 +79,7 @@ class InvoiceAPITest(APITestCase):
     def test_update_invoice_with_details(self):
         url = reverse('invoice-detail', kwargs={'pk': self.invoice.pk})
         data = {
-            'date': '2023-01-02',  # Updated date
+            'date': '2023-01-02', 
             'customer_name': 'Updated Customer Name',
             'invoice_details': [
                 {
